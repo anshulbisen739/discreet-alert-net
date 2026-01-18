@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Shield, Phone } from "lucide-react";
 
@@ -61,13 +62,17 @@ export const Header = () => {
 
         {/* CTA Buttons */}
         <div className="hidden lg:flex items-center gap-3">
-          <Button variant="ghost" size="sm">
-            Login
-          </Button>
-          <Button variant="hero" size="default">
-            <Phone className="w-4 h-4" />
-            Get Started
-          </Button>
+          <Link to="/auth">
+            <Button variant="ghost" size="sm">
+              Login
+            </Button>
+          </Link>
+          <Link to="/auth">
+            <Button variant="hero" size="default">
+              <Phone className="w-4 h-4" />
+              Get Started
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -97,13 +102,17 @@ export const Header = () => {
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-4">
-            <Button variant="outline" className="w-full">
-              Login
-            </Button>
-            <Button variant="hero" className="w-full">
-              <Phone className="w-4 h-4" />
-              Get Started
-            </Button>
+            <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button variant="outline" className="w-full">
+                Login
+              </Button>
+            </Link>
+            <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button variant="hero" className="w-full">
+                <Phone className="w-4 h-4" />
+                Get Started
+              </Button>
+            </Link>
           </div>
         </nav>
       </div>
