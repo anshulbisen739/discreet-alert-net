@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Play, MapPin, Shield, Smartphone } from "lucide-react";
 
@@ -42,10 +43,12 @@ export const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="hero" size="xl">
-                <AlertTriangle className="w-5 h-5" />
-                Get Started
-              </Button>
+              <Link to="/auth">
+                <Button variant="hero" size="xl">
+                  <AlertTriangle className="w-5 h-5" />
+                  Get Started
+                </Button>
+              </Link>
               <Button variant="heroOutline" size="xl">
                 <Play className="w-5 h-5" />
                 View Demo
