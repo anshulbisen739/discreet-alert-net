@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdminRole } from "@/hooks/useAdminRole";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -18,6 +19,7 @@ import {
   CheckCircle,
   Clock,
   Loader2,
+  ShieldCheck,
 } from "lucide-react";
 import type { Database } from "@/integrations/supabase/types";
 
@@ -26,6 +28,7 @@ type Alert = Database['public']['Tables']['alerts']['Row'];
 
 const Dashboard = () => {
   const { user, signOut, loading: authLoading } = useAuth();
+  const { isAdmin } = useAdminRole();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -201,10 +204,18 @@ const Dashboard = () => {
               Silent<span className="text-primary">SOS</span>
             </span>
           </a>
-          <Button variant="ghost" size="sm" onClick={handleSignOut}>
-            <LogOut className="w-4 h-4 mr-2" />
-            Sign Out
-          </Button>
+          <div className="flex items-center gap-2">
+            {isAdmin && (
+              <Button variant="outline" size="sm" onClick={() => navigate('/admin')}>
+                <ShieldCheck className="w-4 h-4 mr-2" />
+                Admin
+              </Button>
+            )}
+            <Button variant="ghost" size="sm" onClick={handleSignOut}>
+              <LogOut className="w-4 h-4 mr-2" />
+              Sign Out
+            </Button>
+          </div>
         </div>
       </header>
 
